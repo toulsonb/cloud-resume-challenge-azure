@@ -1,13 +1,11 @@
 name: Plan Azure Infrastructure
 
 on:
-  push:
-    branches-ignore: ["main"]
-    paths: ["terraform/**"]
-  workflow_dispatch: # Enableds manual workflow run via UI
   pull_request:
-    branches: ["main"]
-    paths: ["terraform/**"]
+    branches:
+      - main
+    paths:
+      - "terraform/**" # Only run if terraform files changed
 
 permissions:
   id-token: write 
