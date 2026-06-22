@@ -219,3 +219,6 @@ __marimo__/
 
 # Azure Functions local secrets (for testing)
 api/local.settings.json
+
+# MacOS
+.DS_Store
