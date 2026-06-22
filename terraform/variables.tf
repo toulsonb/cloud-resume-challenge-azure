@@ -7,7 +7,7 @@ variable "environment" {
 variable "location" {
   type        = string
   description = "The Azure region where all resources will be deployed."
-  default     = "centralus"  # This region is selected because the current subscriptions limit us of eastus for most of the resources to be used
+  default     = "centralus" # This region is selected because the current subscriptions limit us of eastus for most of the resources to be used
 }
 
 variable "resource_group_name" {
