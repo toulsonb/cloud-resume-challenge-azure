@@ -1,0 +1,42 @@
+name: Plan Azure Infrastructure
+
+on:
+  push:
+    branches: ["**"]
+    paths: ["terraform/**"]
+  workflow_dispatch: # Enableds manual workflow run via UI
+  pull_request:
+    branches: ["main"]
+    paths: ["terraform/**"]
+
+permissions:
+  id-token: write 
+  contents: read
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # Log into Azure securely via OIDC
+      - name: Auth to Microsoft Azure
+        uses: azure/login@v2  # Microsoft's packaged login script
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Install the Terraform CLI
+      - name: Install Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
