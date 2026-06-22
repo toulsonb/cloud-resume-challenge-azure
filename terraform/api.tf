@@ -1,79 +1,86 @@
-# ###################################################
-# # SUMMARY: Backend resources for Cloud Resume API #
-# ###################################################
+###################################################
+# SUMMARY: Backend resources for Cloud Resume API #
+###################################################
 
-# # COSMOS DB DATA LAYER
+# COSMOS DB DATA LAYER
 
-# resource "azurerm_cosmosdb_account" "crc_cosmos_prod" {
-#   name                = "${var.unique_prefix}-cosmos-${var.environment}"
-#   location            = azurerm_resource_group.crc_rg_prod.location
-#   resource_group_name = azurerm_resource_group.crc_rg_prod.name
-#   offer_type          = "Standard"
-#   kind                = "GlobalDocumentDB"
+resource "azurerm_cosmosdb_account" "crc_cosmos_prod" {
+  name                = "${var.unique_prefix}-cosmos-${var.environment}"
+  location            = azurerm_resource_group.crc_rg_prod.location
+  resource_group_name = azurerm_resource_group.crc_rg_prod.name
+  offer_type          = "Standard"
+  kind                = "GlobalDocumentDB"
+  tags                = local.common_tags
 
-#   consistency_policy {
-#     consistency_level = "Session"
-#   }
+  # 🚀 ADD THIS BLOCK TO ENABLE SERVERLESS (FINANCIAL LIFESAVER):
+  capabilities {
+    name = "EnableServerless"
+  }
 
-#   geo_location {
-#     location          = azurerm_resource_group.crc_rg_prod.location
-#     failover_priority = 0
-#   }
-# }
+  consistency_policy {
+    consistency_level = "Session"
+  }
 
-# resource "azurerm_cosmosdb_sql_database" "crc_db_prod" {
-#   name                = "CloudResume" # Matches your target production database name
-#   resource_group_name = azurerm_resource_group.crc_rg_prod.name
-#   account_name        = azurerm_cosmosdb_account.crc_cosmos_prod.name
-# }
+  geo_location {
+    location          = azurerm_resource_group.crc_rg_prod.location
+    failover_priority = 0
+  }
+}
 
-# resource "azurerm_cosmosdb_sql_container" "crc_container_prod" {
-#   name                = "Counter" # Matches your target container name
-#   resource_group_name = azurerm_resource_group.crc_rg_prod.name
-#   account_name        = azurerm_cosmosdb_account.crc_cosmos_prod.name
-#   database_name       = azurerm_cosmosdb_sql_database.crc_db_prod.name
-#   partition_key_paths = ["/id"]
-# }
+resource "azurerm_cosmosdb_sql_database" "crc_db_prod" {
+  name                = "CloudResume" # Matches your target production database name
+  resource_group_name = azurerm_resource_group.crc_rg_prod.name
+  account_name        = azurerm_cosmosdb_account.crc_cosmos_prod.name
+}
+
+resource "azurerm_cosmosdb_sql_container" "crc_container_prod" {
+  name                = "Counter" # Matches your target container name
+  resource_group_name = azurerm_resource_group.crc_rg_prod.name
+  account_name        = azurerm_cosmosdb_account.crc_cosmos_prod.name
+  database_name       = azurerm_cosmosdb_sql_database.crc_db_prod.name
+  partition_key_paths = ["/id"]
+}
 
 
-# # 2. SERVERLESS COMPUTE LAYER (FUNCTION APP)
+# 2. SERVERLESS COMPUTE LAYER (FUNCTION APP)
 
-# # Create the serverless Consumption plan (Y1 SKU)
-# resource "azurerm_service_plan" "crc_asp_prod" {
-#   name                = "${var.unique_prefix}-asp-${var.environment}"
-#   location            = azurerm_resource_group.crc_rg_prod.location
-#   resource_group_name = azurerm_resource_group.crc_rg_prod.name
-#   os_type             = "Windows"
-#   sku_name            = "Y1"
-# }
+# Create the serverless Consumption plan (Y1 SKU)
+resource "azurerm_service_plan" "crc_asp_prod" {
+  name                = "${var.unique_prefix}-asp-${var.environment}"
+  location            = azurerm_resource_group.crc_rg_prod.location
+  resource_group_name = azurerm_resource_group.crc_rg_prod.name
+  os_type             = "Windows"
+  sku_name            = "Y1"
+  tags                = local.common_tags
+}
 
-# # Create the Windows Function App for PowerShell
-# resource "azurerm_windows_function_app" "crc_function_prod" {
-#   name                = "func-${var.unique_prefix}-${var.environment}"
-#   location            = azurerm_resource_group.crc_rg_prod.location
-#   resource_group_name = azurerm_resource_group.crc_rg_prod.name
+# Create the Windows Function App for PowerShell
+resource "azurerm_windows_function_app" "crc_function_prod" {
+  name                = "func-${var.unique_prefix}-${var.environment}"
+  location            = azurerm_resource_group.crc_rg_prod.location
+  resource_group_name = azurerm_resource_group.crc_rg_prod.name
 
-#   storage_account_name       = azurerm_storage_account.crc_storage_prod.name
-#   storage_account_access_key = azurerm_storage_account.crc_storage_prod.primary_access_key
-#   service_plan_id            = azurerm_service_plan.crc_asp_prod.id
+  storage_account_name       = azurerm_storage_account.crc_storage_prod.name
+  storage_account_access_key = azurerm_storage_account.crc_storage_prod.primary_access_key
+  service_plan_id            = azurerm_service_plan.crc_asp_prod.id
+  tags                       = local.common_tags
 
-#   site_config {
-#     application_stack {
-#       powershell_core_version = "7.4"
-#     }
+  site_config {
+    application_stack {
+      powershell_core_version = "7.4"
+    }
 
-#     # Configure security whitelists for site orgins (to fix CORS errors)
-#     cors {
-#       allowed_origins = [
-#         "https://bradtoulson.com",
-#         "https://${azurerm_storage_account.crc_storage_prod.name}.z13.web.core.windows.net"
-#       ]
-#     }
-#   }
+    # Configure security whitelists for site orgins (to fix CORS errors)
+    cors {
+      allowed_origins = [
+        "https://bradtoulson.com",
+        "https://${azurerm_storage_account.crc_storage_prod.name}.z13.web.core.windows.net"
+      ]
+    }
+  }
 
-#   # Inject the connection string directly into application settings
-#   app_settings = {
-#     "FUNCTIONS_WORKER_RUNTIME" = "powershell"
-#     "CosmosDBConnectionString" = azurerm_cosmosdb_account.crc_cosmos_prod.primary_connection_string
-#   }
-# }
+  # Inject the connection string directly into application settings
+  app_settings = {
+    "FUNCTIONS_WORKER_RUNTIME" = "powershell"
+  "CosmosDBConnectionString" = azurerm_cosmosdb_account.crc_cosmos_prod.primary_sql_connection_string }
+}
