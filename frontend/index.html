@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="The cloud resume of Brad Toulson, Senior Cloud & DevOps Engineer.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brad Toulson - Cloud Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-color: #1A365D; /* Deep Professional Navy */
+            --accent-color: #2B6CB0; /* Softer Blue Accent */
+            --dark-bg: #111;
+            --light-bg: #F7FAFC; /* Softer off-white */
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 20px 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #A0AEC0; /* Soft, muted blue-gray */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 25px; /* Pill shape */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .linkedin-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: -40px auto 40px auto; /* Pulls the card slightly up over the header */
+            padding: 40px;
+            background: var(--card-bg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        #summary h2 {
+            margin-top: 0;
+        }
+
+        h3 {
+            margin: 0 0 5px 0;
+            color: var(--text-main);
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .meta-info {
+            font-style: normal;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .job {
+            margin-bottom: 30px;
+        }
+
+        .edu-item {
+            margin-bottom: 20px;
+        }
+
+        .cert-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+
+        .cert-list li {
+            background: #EBF8FF; 
+            color: var(--accent-color);
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .visitor-counter {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Brad Toulson</h1>
+        <div class="tagline">Senior Cloud Engineer</div>
+        
+        <a href="https://www.linkedin.com/in/bradtoulson/" target="_blank" rel="noopener noreferrer" class="linkedin-btn" aria-label="LinkedIn Profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+            </svg>
+            linkedin.com/in/bradtoulson
+        </a>
+    </header>
+
+    <div class="container">
+        
+        <section id="summary">
+            <h2>Summary</h2>
+            <p>Results-driven and self-motivated professional with 14 years of technical experience and 9 years of multi-cloud operations. Proven expertise in DevOps Engineering, database administration, IT Security, and system administration with a track record of mastering new skills, optimizing business processes, and producing tangible results. Adept at solving complex business challenges and implementing forward-thinking solutions that provide long-term value.</p>
+        </section>
+
+        <section id="highlights">
+            <h2>Experience Highlights</h2>
+            
+            <h3>Cloud & DevOps</h3>
+            <ul>
+                <li>Hands-on experience in Google Cloud Platform, AWS, and Azure deploying compute, cloud functions, storage, web apps, Kubernetes, DNS, load balancing, firewalls, cloud CDN, security policies, monitoring, and alerting.</li>
+                <li>Managed and optimized Google Kubernetes Engine (GKE) clusters, ensuring high availability, scalability, and cost-efficiency for containerized applications.</li>
+                <li>Leveraged DevOps tools such as Terraform, JFrog Artifactory, Ansible, Helm, Docker and Bitbucket to administrate Linux, Windows, and containerized workloads.</li>
+            </ul>
+
+            <h3>Business Process Optimization</h3>
+            <ul>
+                <li>Developed automation tooling and processes to decrease the business role workload from 20 to 2 hours per week.</li>
+                <li>Revised custom log metrics and alert policies to reduce on-call false positives by 70%.</li>
+                <li>Delivered a month-long infrastructure project in 6 calendar days, orchestrating a global team of 10 DBAs to ensure continuous project momentum.</li>
+            </ul>
+
+            <h3>Innovation</h3>
+            <ul>
+                <li>Initiated and led Cloud Storage assessment project across 5 teams, identifying waste and recommending solutions that reduced cloud storage costs by $325K/year.</li>
+                <li>Built a reporting solution that consolidated billing data, incorporated third-party metrics, and delivered flexible ad-hoc reports to management.</li>
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Employment History</h2>
+
+            <div class="job">
+                <h3>Sr. DevOps Engineer | RingCentral - Cloud Operations</h3>
+                <p class="meta-info">Jun 2024 - Present</p>
+                <ul>
+                    <li>Improved cloud scalability and reliability by architecting, developing Kubernetes YAML configs and generating monitoring for migrations of on-premises workloads to containerized deployments within Kubernetes.</li>
+                    <li>Use DevOps tools and practices such as Terraform, Ansible, Helm, Docker, Bitbucket, and GitLab to automate and optimize the deployment, configuration, and monitoring of cloud infrastructure and services.</li>
+                    <li>Maintain GKE infrastructure and Argo CD deployments for Apache Kafka event-streaming workloads.</li>
+                    <li>Manage Google Kubernetes Engine (GKE) cluster lifecycles, optimizing performance and resource allocation through precise node pool and pod affinity configurations.</li>
+                    <li>Leveraged IaC to execute critical domain migration involving over 12,000 resource changes across the GCP organization.</li>
+                    <li>Developed bash scripts to streamline user/group migrations, completing a 6-week project in just 3 weeks.</li>
+                    <li>Enhanced fiscal performance through strategic contract negotiations, achieving over $130,000 in savings and securing optimized pricing for essential business tools.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Sr. DevOps Engineer | Mitel - Cloud Operations</h3>
+                <p class="meta-info">Jan 2020 - Jun 2024</p>
+                <ul>
+                    <li>Provided product teams with architecture recommendations, deployment best practices, and implementation assistance in the cloud environment.</li>
+                    <li>Established Cloud Governance for the Google Cloud Platform, optimizing administration, enhancing security, promoting sustainability, and driving substantial cost efficiencies.</li>
+                    <li>Architected and enforced CI/CD best practices across development, QA, and operations teams.</li>
+                    <li>Pioneered and automated scalable SSO user and group management through Infrastructure as Code (IaC), leading to its successful adoption and implementation across multiple business units.</li>
+                    <li>Implemented Identity and Access Management (IAM) solutions to standardize permissions and enhance security posture across cloud resources.</li>
+                    <li>Automated cost optimization by developing Python scripts to inventory GCP compute instances and apply customized shutdown/startup schedules to development environments.</li>
+                    <li>Strengthened financial oversight using detailed cost estimates to develop annual budgets and execute quarter-end financial reports, guaranteeing fiscal accountability and informing strategic initiatives.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Sr. Database Administrator | Infor - Cloud Operations</h3>
+                <p class="meta-info">Sep 2016 - Jan 2020</p>
+                <ul>
+                    <li>Utilized Amazon Web Services to manage Microsoft SQL Server AlwaysOn database clusters.</li>
+                    <li>Automated database and server management through PowerShell, T-SQL, and REST API integrations.</li>
+                    <li>Directed procurement and deployment of $3 million/yr. of server hardware utilized by cloud database tier.</li>
+                    <li>Maintained SQL server storage, backups, and database permissions.</li>
+                    <li>Administered performance tuning, server maintenance, and cluster installations.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Supervisor, Vendor Management Office | Bob Jones University - Information Technologies</h3>
+                <p class="meta-info">Aug 2015 - Sep 2016</p>
+                <ul>
+                    <li>Established processes to limit risks associated with cost control, information security, vendor non-compliance, and business continuity.</li>
+                    <li>Negotiated with vendors in cases of vendor noncompliance, inaccurate billing, and contract renewals.</li>
+                    <li>Developed relational database to track contract life cycles, automate reporting, and store vendor information.</li>
+                    <li>Designed and implemented asset management system to enable data-driven financial decisions.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <h3>Supervisor, IT Financial | Bob Jones University - Information Technologies</h3>
+                <p class="meta-info">Dec 2012 - Aug 2015</p>
+                <ul>
+                    <li>Supervised team responsible for contract administration, budgeting, procurement, and vendor negotiations.</li>
+                    <li>Led 12-month project to implement new software, servers, and end-user client to 5000 users.</li>
+                    <li>Used JavaScript integration to develop user prompt that consistently saves $3,500 per year.</li>
+                    <li>Implemented initiative that decreased printer fleet by 30% and reduced yearly production costs by 20%.</li>
+                    <li>Designed and created relational database to track printer asset information, history, and costs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="edu-item">
+                <h3>Master of Business Administration</h3>
+                <p class="meta-info">Clemson University | 3.91 GPA</p>
+            </div>
+            <div class="edu-item">
+                <h3>B.S. in Business and Technology, Minor in Information Technology</h3>
+                <p class="meta-info">Bob Jones University | 4.0 GPA</p>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <ul class="cert-list">
+                <li>HashiCorp Terraform Associate</li>
+                <li>Microsoft Azure Fundamentals</li>
+                <li>AWS Cloud Practitioner</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Brad Toulson</p>
+        <div class="visitor-counter">
+            You are visitor number: <span id="counter">Loading...</span>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
