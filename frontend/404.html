@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #1A365D; /* Deep Professional Navy */
+            --accent-color: #2B6CB0; /* Softer Blue Accent */
+            --light-bg: #F7FAFC; /* Softer off-white */
+            --text-main: #2D3748;
+            --text-muted: #718096;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .error-container {
+            max-width: 500px;
+            padding: 40px;
+            background: #FFFFFF;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+            color: var(--accent-color);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            border-radius: 25px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .home-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Resource Not Found</h2>
+        <p>The page you are looking for doesn't exist or has been moved to a new destination within the cloud architecture.</p>
+        <a href="index.html" class="home-btn">Return to Resume</a>
+    </div>
+
+</body>
+</html>
