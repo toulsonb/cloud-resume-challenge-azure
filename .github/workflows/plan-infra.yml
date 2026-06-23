@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "terraform/**" # Only run if terraform files changed
+  workflow_dispatch: # Allow manual plan from GitHub UI
 
 permissions:
   id-token: write 
