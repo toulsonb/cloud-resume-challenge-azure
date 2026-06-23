@@ -99,11 +99,18 @@ resource "azurerm_windows_function_app" "crc_function_prod" {
     # Configure security whitelists for site orgins (to fix CORS errors)
     cors {
       allowed_origins = [
-        "https://${azurerm_storage_account.crc_storage_prod.name}.z13.web.core.windows.net",
+        trimsuffix(azurerm_storage_account.crc_storage_prod.primary_web_endpoint, "/"),
         "https://bradtoulson.com",
         "https://portal.azure.com"
       ]
     }
+  }
+
+  # Ignore auto-generated tag that Terraform sees as drift
+  lifecycle {
+    ignore_changes = [
+      tags["hidden-link: /app-insights-resource-id"]
+    ]
   }
 
   # Inject the connection string directly into application settings
