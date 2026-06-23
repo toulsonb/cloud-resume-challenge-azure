@@ -2,7 +2,8 @@
 const localApiUrl = 'http://localhost:7071/api/GetResumeCounter';
 
 // 2. PASTE your copied Azure URL here (make sure it's wrapped in single quotes!)
-const cloudApiUrl = 'https://func-cloudresume-dev-hmfshcauembmg6a2.centralus-01.azurewebsites.net/api/GetResumeCounter';
+// const cloudApiUrl = 'https://func-cloudresume-dev-hmfshcauembmg6a2.centralus-01.azurewebsites.net/api/GetResumeCounter'; // dev env
+const cloudApiUrl = 'https://func-cloudresumebt-prod.azurewebsites.net/api/GetResumeCounter?code=4782_PNAAiEDPxK-ee_uHSqGCNnx_doawI-oExu8zgATAzFuTkUTjA==';
 
 const getVisitCount = async () => {
     try {
