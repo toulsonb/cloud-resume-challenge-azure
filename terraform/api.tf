@@ -106,6 +106,13 @@ resource "azurerm_windows_function_app" "crc_function_prod" {
     }
   }
 
+  # Ignore auto-generated tag that Terraform sees as drift
+  lifecycle {
+    ignore_changes = [
+      tags["hidden-link: /app-insights-resource-id"]
+    ]
+  }
+
   # Inject the connection string directly into application settings
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME" = "powershell"
