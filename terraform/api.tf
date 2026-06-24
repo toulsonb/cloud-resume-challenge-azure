@@ -101,7 +101,8 @@ resource "azurerm_windows_function_app" "crc_function_prod" {
       allowed_origins = [
         trimsuffix(azurerm_storage_account.crc_storage_prod.primary_web_endpoint, "/"),
         "https://bradtoulson.com",
-        "https://portal.azure.com"
+        "https://portal.azure.com",
+        "http://localhost:8080",
       ]
     }
   }
