@@ -218,7 +218,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Azure Functions local secrets (for testing)
-api/local.settings.json
+**/local.settings.json
 
 # MacOS
 .DS_Store
